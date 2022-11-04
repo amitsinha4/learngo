@@ -7,7 +7,7 @@ type base struct {
 }
 
 func (b base) describe() string {
-  return fmt.Sprintf("base with num=%w", b.num)
+  return fmt.Sprintf("base with num=%v", b.num)
 }
 
 type container struct {
@@ -22,4 +22,10 @@ func main(){
   fmt.Println("also num: ", co.base.num)
   fmt.Println("describe: ", co.describe())
 
+  type describer interface {
+    describe() string
+  }
+
+  var d describer = co
+  fmt.Println("Describer: ", d.describe())
 }
